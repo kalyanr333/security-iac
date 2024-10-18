@@ -29,8 +29,33 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - name: Terraform fmt
+        run: terraform fmt
+
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v1
 
-      - name: tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
+      - name: trivy scan
+        uses: aquasecurity/trivy-action@0.19.0
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+
+      - name: Terraform init
+        run: terraform init 
+        
+      - name: validate terraform
+        id: validate
+        run: terraform validate -no-color
+        
+      - name: Terraform plan
+        run: terraform plan -input-false
+        
+      - name: terraform apply
+        run: terraform apply -auto-approve -input=false
+        
+      - name: Check apply
+        if: steps.apply.outcome == 'success'
+        run: |
+          echo "terraform apply succeeded"
+      
