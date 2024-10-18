@@ -33,6 +33,7 @@ resource "google_project_iam_binding" "example" {
   role    = "roles/owner" # Sensitive
 
   members = [
-    "user:jane@example.com",
+    #"user:jane@example.com",
+    "group:g1@example.com"
   ]
 }
