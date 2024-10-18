@@ -1,11 +1,4 @@
-# A policy that grants all permissions may indicate an improper access control, which violates the principle of least privilege.
 
-#     OWASP Top 10 2021 Category A1 - Broken Access Control
-#     AWS Documentation - Grant least privilege
-#     Google Cloud Documentation - Understanding roles
-#     MITRE, CWE-732 - Incorrect Permission Assignment for Critical Resource
-#     MITRE, CWE-284 - Improper Access Control
-#     OWASP Top 10 2017 Category A5 - Broken Access Control
 
 # AWS
 resource "aws_iam_policy" "example" {
